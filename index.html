@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《มหาแดนพันภพ: ผนึกกระบี่สะบั้นสวรรค์》 — รายงานแม่บทข้อมูลเกมและระบบสถาปัตยกรรมฉบับสมบูรณ์</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Sarabun & Cinzel Decorative -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Noto+Serif+Thai:wght@400;600;700&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wuxia: {
+                            crimson: '#b4281e',
+                            crimsonLight: '#d93829',
+                            gold: '#d4af37',
+                            goldDark: '#997d26',
+                            jade: '#2dd4bf',
+                            ink: '#0b0f17',
+                            inkCard: '#131b26',
+                            inkBorder: '#233247'
+                        }
+                    },
+                    fontFamily: {
+                        thai: ['Sarabun', 'sans-serif'],
+                        serifThai: ['Noto Serif Thai', 'serif'],
+                        wuxia: ['Cinzel Decorative', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #080c12;
+            color: #e2e8f0;
+            font-family: 'Sarabun', sans-serif;
+            background-image: radial-gradient(circle at 50% 0%, rgba(180, 40, 30, 0.15) 0%, transparent 60%),
+                              radial-gradient(circle at 100% 40%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+        }
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #fce08a 0%, #d4af37 50%, #aa8420 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-crimson-gradient {
+            background: linear-gradient(135deg, #ff7b72 0%, #b4281e 50%, #75140e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-panel {
+            background: rgba(19, 27, 38, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+        }
+        .glass-panel:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-wuxia-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full border-2 border-wuxia-gold flex items-center justify-center bg-wuxia-crimson/30 shadow-[0_0_12px_rgba(212,175,55,0.4)]">
+                    <span class="text-wuxia-gold font-bold text-lg">龍</span>
+                </div>
+                <div>
+                    <span class="text-xl font-bold text-gold-gradient block font-serifThai">《มหาแดนพันภพ》</span>
+                    <span class="text-xs text-slate-400">The Heavenly Fatebreaker Sword</span>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a href="#summary" class="hover:text-wuxia-gold transition">สารบัญ 12 หมวด</a>
+                <a href="#heroes" class="hover:text-wuxia-gold transition">2 ตัวละครหลัก</a>
+                <a href="#combat" class="hover:text-wuxia-gold transition">ระบบต่อสู้</a>
+                <a href="#cultivation" class="hover:text-wuxia-gold transition">ผังบำเพ็ญตบะ</a>
+                <a href="#levels" class="hover:text-wuxia-gold transition">ด่าน & บอส</a>
+                <a href="#gallery" class="hover:text-wuxia-gold transition">แกลเลอรี</a>
+                <a href="#creator-menu" class="hover:text-wuxia-gold transition text-wuxia-gold font-semibold">เมนูสำหรับพี่แจ็ค</a>
+            </nav>
+
+            <!-- Download Buttons -->
+            <div class="flex items-center space-x-3">
+                <a href="Maha_Dan_Panpaph_Master_Dossier.docx" download class="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-lg border border-blue-500/40 bg-blue-900/30 text-blue-300 hover:bg-blue-800/40 text-xs font-medium transition shadow">
+                    📄 Word (.docx)
+                </a>
+                <a href="Maha_Dan_Panpaph_Master_Dossier.pdf" download class="inline-flex items-center px-4 py-1.5 rounded-lg bg-gradient-to-r from-wuxia-crimson to-red-800 hover:from-red-600 hover:to-red-900 text-white text-xs font-semibold shadow-[0_0_15px_rgba(180,40,30,0.5)] transition">
+                    📑 PDF (.pdf)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Showcase Section -->
+    <section class="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full border border-wuxia-gold/30 bg-wuxia-gold/10 text-wuxia-gold text-xs font-semibold mb-6">
+                <span>✦ Master Production Dossier & Interactive Showcase ✦</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-bold font-serifThai text-gold-gradient tracking-tight mb-4">
+                《มหาแดนพันภพ: ผนึกกระบี่สะบั้นสวรรค์》
+            </h1>
+            <p class="text-2xl sm:text-3xl text-crimson-gradient font-semibold mb-6 font-serifThai">
+                「 逆 天 改 命 · ฝืน ลิ ขิต เป ลี่ ยน ชะ ตา 」
+            </p>
+            <p class="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed mb-8">
+                รายงานข้อมูลแม่บทและสถาปัตยกรรมซอฟต์แวร์ครบทั้ง 12 หมวดหมู่ รวบรวมโดยสภา AI Agent 13 ตำแหน่ง และซีเนียร์วิศวกร (Poteto-Mode) ถวายแด่ <b>พี่แจ็ค (Executive Producer)</b> พร้อมให้เลือกสรรหมวดงานที่ต้องการลงมือทำเองได้ทันที!
+            </p>
+
+            <!-- Badges Bar -->
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs mb-10">
+                <span class="px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700 text-slate-300">🎮 2D Side-scrolling Action RPG</span>
+                <span class="px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700 text-slate-300">🍎 Apple Silicon M1 Native (60 FPS)</span>
+                <span class="px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700 text-slate-300">⚙️ Pure Godot 4.7 GDScript</span>
+                <span class="px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700 text-wuxia-jade">❄️ Dual-Hero Playable System</span>
+            </div>
+
+            <!-- Hero Video/Screenshot Frame -->
+            <div class="relative mx-auto rounded-2xl overflow-hidden border-2 border-wuxia-gold/40 shadow-[0_0_35px_rgba(212,175,55,0.25)] glass-panel p-2">
+                <img src="images/real_ingame_01_village_start.png" alt="Maha Dan Panpaph In-game" class="rounded-xl w-full object-cover">
+                <div class="absolute bottom-4 left-6 right-6 p-4 rounded-xl bg-black/75 backdrop-blur-md border border-white/10 text-left flex justify-between items-center">
+                    <div>
+                        <div class="text-wuxia-gold font-bold text-sm">บทที่ 1: ชายแดนภพมนุษย์ (Mortal Border Preview)</div>
+                        <div class="text-xs text-slate-400">ระบบต่อสู้ปัดป้องวิญญาณ (Soul Parry) ผสานงานศิลป์พู่กันจีนโบราณ</div>
+                    </div>
+                    <span class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-xs font-semibold">
+                        ● รันเสร็จสมบูรณ์
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master 12 Modules Explorer -->
+    <section id="summary" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold font-serifThai text-gold-gradient mb-2">สารบบ 12 หมวดหมู่ข้อมูลแม่บท (Master Catalog)</h2>
+            <p class="text-slate-400 text-sm">คลิกเปิด-ปิด เพื่อดูรายละเอียดเชิงลึกของแต่ละหมวดหมู่</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Module 1 -->
+            <div class="glass-panel p-6 rounded-2xl border border-wuxia-gold/20 hover:border-wuxia-gold/50 transition">
+                <div class="flex items-center space-x-3 mb-3">
+                    <span class="text-2xl">🏛️</span>
+                    <h3 class="text-lg font-bold text-wuxia-gold font-serifThai">หมวด 01: แก่นจักรวาล & สัจพจน์ Canon</h3>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    ครอบคลุมปรัชญา 'ฝืนลิขิตเปลี่ยนชะตา' (逆天改命), สี่ภพภูมิคนละมิติ (แดนมนุษย์, เซียน, มาร, เทพ - C-018), วงล้อชะตากรรมสวรรค์แตกสลายกลายเป็นกระบี่หัก (C-020), และเตากลืนชีวาสูบวิญญาณมนุษย์ 1,000 ดวง (C-013)
+                </p>
+                <div class="p-3 rounded-lg bg-black/40 border border-slate-800 text-xs text-slate-400 space-y-1">
+                    <div><b>• สัจพจน์ล็อกถาวร:</b> C-001 ถึง C-022 (ห้ามทำ Pay-to-win, เฉินซีไร้รากวิญญาณ)</div>
+                    <div><b>• ปริศนาซ่อนเร้น:</b> ใครคือผู้ทำลายแกนกลางวงล้อสวรรค์? และใครเป็นผู้ตีดาบกระบี่หัก?</div>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="glass-panel p-6 rounded-2xl border border-wuxia-gold/20 hover:border-wuxia-gold/50 transition">
+                <div class="flex items-center space-x-3 mb-3">
+                    <span class="text-2xl">👥</span>
+                    <h3 class="text-lg font-bold text-wuxia-gold font-serifThai">หมวด 02: คัมภีร์ตัวละครและชีวประวัติ</h3>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    เจาะลึกปูมหลัง 6 ตัวละครหลัก: <b>เฉินซี</b> (จอมยุทธ์ปราณโลหิต), <b>ไป๋เยว่หลิง</b> (เซียนหญิงเหมันต์เล่นได้จริง), <b>ซ่งเหริน</b> (ศิษย์ยันต์มัสตาร์ด), <b>เยี่ยซางเยี่ย</b> (องค์ชายมาร), <b>เทวราชอวี่หาน</b> (เทพสงคราม) และ <b>ผู้อาวุโสจ้าวเหยียน</b>
+                </p>
+                <div class="p-3 rounded-lg bg-black/40 border border-slate-800 text-xs text-slate-400 space-y-1">
+                    <div><b>• ระบบเสียงพากย์:</b> 3 อารมณ์ (สุขุม Calm, ตะโกน Shout, ขึงขัง Glare)</div>
+                    <div><b>• ทัศนศิลป์:</b> สไปรต์ชีต 37 แอ็กชันเฟรม สำหรับไป๋เยว่หลิง</div>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="glass-panel p-6 rounded-2xl border border-wuxia-gold/20 hover:border-wuxia-gold/50 transition">
+                <div class="flex items-center space-x-3 mb-3">
+                    <span class="text-2xl">⚔️</span>
+                    <h3 class="text-lg font-bold text-wuxia-gold font-serifThai">หมวด 03: ระบบต่อสู้ 2 จอมยุทธ์ (Dual-Hero)</h3>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    กดปุ่ม <b>[Tab]</b> หรือ <b>[C]</b> สลับตัวละครได้อิสระ! เฉินซีเน้นฟันหนักและปราณโลหิตชาด ส่วนไป๋เยว่หลิงเน้นเพลงกระบี่หยกว่องไว, คอมโบกลางเวหา [W]+[J], ท่าปักพื้นน้ำแข็ง Frostfall Plunge [S]+[J] และค่ายกล 6 ทิศ [U]
+                </p>
+                <div class="p-3 rounded-lg bg-black/40 border border-slate-800 text-xs text-slate-400 space-y-1">
+                    <div><b>• กลไกป้องกัน:</b> Soul Parry [L] (Perfect Stun) และ Ink Dash [K] (I-Frames 0.28s)</div>
+                    <div><b>• เกจปราณ:</b> ใช้ Stamina สำหรับการหลบ และ Blood Qi สำหรับท่าสะบั้นสวรรค์</div>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="glass-panel p-6 rounded-2xl border border-wuxia-gold/20 hover:border-wuxia-gold/50 transition">
+                <div class="flex items-center space-x-3 mb-3">
+                    <span class="text-2xl">🧘</span>
+                    <h3 class="text-lg font-bold text-wuxia-gold font-serifThai">หมวด 04: ผังบำเพ็ญตบะไร้รากวิญญาณ</h3>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    ไม่ใช้ระบบ EXP ธรรมดา แต่อัปเกรดผ่าน 'แต้มจิตจำนง' (Will Points) แบ่ง 3 สาย: <b>กายาสะท้านฟ้า</b> (เพิ่ม HP/เกราะ), <b>เพลงกระบี่สะบั้นฟ้า</b> (เพิ่มพลังโจมตี/คริติคอล) และ <b>จิตปฏิเสธสวรรค์</b> (ขยายหน้าต่าง Parry และ I-Frames)
+                </p>
+                <div class="p-3 rounded-lg bg-black/40 border border-slate-800 text-xs text-slate-400 space-y-1">
+                    <div><b>• คีย์ลัดในเกม:</b> กดปุ่ม [T] เพื่อเปิดดูผังบำเพ็ญได้ตลอดเวลา</div>
+                    <div><b>• ยาฟื้นฟู [Q]:</b> น้ำเต้าโอสถฟื้นเลือด 30% พร้อมคูลดาวน์</div>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="glass-panel p-6 rounded-2xl border border-wuxia-gold/20 hover:border-wuxia-gold/50 transition">
+                <div class="flex items-center space-x-3 mb-3">
+                    <span class="text-2xl">🗺️</span>
+                    <h3 class="text-lg font-bold text-wuxia-gold font-serifThai">หมวด 05: การออกแบบฉากและด่าน 2 บท</h3>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    <b>บทที่ 1: ชายแดนมนุษย์ (9,060px)</b> ผ่าน 5 โซนจากหน้าผา สู่ป่าไผ่ฝนพรำ สะพานศิลาโบราณ และหน้าเตากลืนชีวา | <b>บทที่ 2: ความจริงใต้หอโอสถ (8,400px)</b> ถ้ำหินธรรมชาติแตกลายงา กับดักท่อไอพิษ และหลุมหนามวิญญาณ
+                </p>
+                <div class="p-3 rounded-lg bg-black/40 border border-slate-800 text-xs text-slate-400 space-y-1">
+                    <div><b>• อนุภาคไดนามิก:</b> หยดฝนเฉียง, สะเก็ดไฟมรกตใต้ดิน, ลมพัดใบไผ่</div>
+                    <div><b>• ศิลาจารึก [E]:</b> จุดอ่านคัมภีร์ลับเพื่อปลดล็อกเนื้อเรื่องและแต้มบำเพ็ญ</div>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="glass-panel p-6 rounded-2xl border border-wuxia-gold/20 hover:border-wuxia-gold/50 transition">
+                <div class="flex items-center space-x-3 mb-3">
+                    <span class="text-2xl">👹</span>
+                    <h3 class="text-lg font-bold text-wuxia-gold font-serifThai">หมวด 06: ปัญญาประดิษฐ์อสูรและบอส</h3>
+                </div>
+                <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                    ขับเคลื่อนด้วย AI State Machine: <b>อสูรเงา</b> มีท่าก้าวขาวิ่ง 4 เฟรม, <b>บอสเตากลืนชีวา</b> (Phase 1 ดาบยักษ์ไฟร์คลีฟ / Phase 2 เพลิงผลาญคลั่ง) และ <b>บอสเงาจิตผู้อาวุโสจ้าวเหยียน</b> ทุกตัวมีท่าง้างเตือน (Telegraph) และหลอด Poise
+                </p>
+                <div class="p-3 rounded-lg bg-black/40 border border-slate-800 text-xs text-slate-400 space-y-1">
+                    <div><b>• Poise Break:</b> ฟันโจมตีหนักจนเกราะแตก บอสจะชะงักเปิดช่องว่าง 3.5 วินาที</div>
+                    <div><b>• รางวัลสังหาร:</b> มอบแต้มปราณโลหิต +35% และไอเทมภารกิจ</div>
+                </div>
+            </div>
+
+            <!-- Module 7-12 Condensed Box -->
+            <div class="md:col-span-2 glass-panel p-6 rounded-2xl border border-wuxia-gold/20">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <div class="text-wuxia-gold font-bold mb-1 flex items-center space-x-2">
+                            <span>🎨</span><span>หมวด 07 & 08: ศิลป์ & ดนตรี</span>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            ลายเส้นพู่กันหมึกดำตัดสีแดงชาดและหยกคราม ผสานดนตรีเครื่องสายจีนโบราณ (กู่เจิง, ขลุ่ยผิว) และกลองศึกออเคสตราเร่งเร้าในห้องบอส
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-wuxia-gold font-bold mb-1 flex items-center space-x-2">
+                            <span>🖥️</span><span>หมวด 09 & 10: UI & สถาปัตยกรรมโค้ด</span>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            Calligraphic HUD สำริดทองเหลือง พร้อมมินิแมปกระจกแปดทิศ (Bagua Mirror) สถาปัตยกรรม GDScript แยกโมดูลอิสระ รันเสถียรบน Mac M1 60 FPS
+                        </p>
+                    </div>
+                    <div>
+                        <div class="text-wuxia-gold font-bold mb-1 flex items-center space-x-2">
+                            <span>💾</span><span>หมวด 11 & 12: ระบบเซฟ & แผนงาน</span>
+                        </div>
+                        <p class="text-xs text-slate-300">
+                            เซฟอัตโนมัติไฟล์ JSON (user://save_data.json) จดจำค่าสถิติและการอัปเกรด พร้อม Milestone การส่งมอบงาน 3 รอบตรวจรับ
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Dual Hero Showcase -->
+    <section id="heroes" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold font-serifThai text-gold-gradient mb-2">2 ตัวละครหลักที่เล่นได้จริง (Playable Dual-Heroes)</h2>
+            <p class="text-slate-400 text-sm">คลิกสลับดูคุณสมบัติและท่วงท่าการต่อสู้</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Chen Xi Card -->
+            <div class="glass-panel rounded-2xl p-6 border border-wuxia-crimson/40 hover:border-wuxia-crimson transition shadow-lg">
+                <div class="flex items-center space-x-4 mb-4">
+                    <img src="images/chen_xi_portrait_calm.png" alt="Chen Xi" class="w-16 h-16 rounded-full border-2 border-wuxia-crimson object-cover shadow">
+                    <div>
+                        <h3 class="text-xl font-bold text-red-400 font-serifThai">เฉินซี (Chen Xi)</h3>
+                        <span class="text-xs px-2.5 py-0.5 rounded-full bg-red-950 border border-red-800 text-red-300">จอมยุทธ์มนุษย์ไร้รากวิญญาณ</span>
+                    </div>
+                </div>
+                <img src="images/iteration1_03_chen_xi_improved_slash.png" alt="Chen Xi Slash" class="rounded-xl w-full mb-4 border border-red-900/40">
+                <ul class="text-xs text-slate-300 space-y-2 mb-4">
+                    <li><b>🗡️ อาวุธประจำกาย:</b> กระบี่หักสะบั้นสวรรค์ (เศษแกนวงล้อชะตากรรมสวรรค์ C-020)</li>
+                    <li><b>🩸 พลังขับเคลื่อน:</b> ปราณโลหิตสีแดงชาด (Crimson Blood Qi) และพละกำลังกายเนื้อ</li>
+                    <li><b>⚔️ สไตล์การต่อสู้:</b> หนักหน่วง มีน้ำหนัก ฟันทำลายเกราะ (Poise Break) ศัตรูขนาดใหญ่</li>
+                    <li><b>💥 ท่าไม้ตาย [U]:</b> สะบั้นสวรรค์ (Blood Qi Cleave) ฟันคลื่นโลหิตทำลายล้าง 350%</li>
+                </ul>
+            </div>
+
+            <!-- Bai Yueling Card -->
+            <div class="glass-panel rounded-2xl p-6 border border-wuxia-jade/40 hover:border-wuxia-jade transition shadow-lg">
+                <div class="flex items-center space-x-4 mb-4">
+                    <div class="w-16 h-16 rounded-full border-2 border-wuxia-jade bg-teal-950/80 flex items-center justify-center text-wuxia-jade font-bold text-2xl shadow">
+                        月
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-teal-300 font-serifThai">ไป๋เยว่หลิง (Bai Yueling)</h3>
+                        <span class="text-xs px-2.5 py-0.5 rounded-full bg-teal-950 border border-teal-800 text-teal-300">เซียนหญิงแห่งหอโอสถ</span>
+                    </div>
+                </div>
+                <img src="images/iteration1_02_playable_bai_yueling_attack.png" alt="Bai Yueling Attack" class="rounded-xl w-full mb-4 border border-teal-900/40">
+                <ul class="text-xs text-slate-300 space-y-2 mb-4">
+                    <li><b>🗡️ อาวุธประจำกาย:</b> กระบี่ผลึกหยกเหมันต์ (Jade Frost Flying Sword)</li>
+                    <li><b>❄️ พลังขับเคลื่อน:</b> รากวิญญาณเหมันต์บริสุทธิ์และไอเย็นฟ้าดิน</li>
+                    <li><b>⚔️ สไตล์การต่อสู้:</b> รวดเร็ว ว่องไว โจมตีกลางเวหา และพุ่งทิ้งตัวปักพื้นแช่แข็ง</li>
+                    <li><b>❄️ ท่าไม้ตาย [U]:</b> ค่ายกลกระบี่ 6 ทิศ (Six-Blade Hexagram Formation) หมุนวนกักบริเวณ</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Photographic Gallery -->
+    <section id="gallery" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold font-serifThai text-gold-gradient mb-2">คลังภาพถ่ายหลักฐานในเกมจริง (In-Game Gallery)</h2>
+            <p class="text-slate-400 text-sm">ภาพแคปเจอร์จริงจากการรันบนชิป Apple Silicon M1</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="glass-panel p-2 rounded-xl border border-slate-800 hover:border-wuxia-gold/40 transition">
+                <img src="images/iteration1_01_playable_bai_yueling_run.png" alt="Bai Yueling Run" class="rounded-lg w-full mb-2">
+                <div class="text-xs font-semibold text-wuxia-gold">ไป๋เยว่หลิง: โหมดวิ่งท่องนภาเหมันต์ 6 เฟรม</div>
+            </div>
+            <div class="glass-panel p-2 rounded-xl border border-slate-800 hover:border-wuxia-gold/40 transition">
+                <img src="images/iteration1_02_playable_bai_yueling_attack.png" alt="Bai Yueling Attack" class="rounded-lg w-full mb-2">
+                <div class="text-xs font-semibold text-wuxia-gold">ไป๋เยว่หลิง: คลื่นกระบี่หยกจันทร์เสี้ยวกลางเวหา</div>
+            </div>
+            <div class="glass-panel p-2 rounded-xl border border-slate-800 hover:border-wuxia-gold/40 transition">
+                <img src="images/iteration1_03_chen_xi_improved_slash.png" alt="Chen Xi Improved Slash" class="rounded-lg w-full mb-2">
+                <div class="text-xs font-semibold text-wuxia-gold">เฉินซี: เพลงกระบี่สะบั้นพู่กันจีนสีแดงชาด</div>
+            </div>
+            <div class="glass-panel p-2 rounded-xl border border-slate-800 hover:border-wuxia-gold/40 transition">
+                <img src="images/iteration1_04_corrupted_beast_walk_trot.png" alt="Corrupted Beast Trot" class="rounded-lg w-full mb-2">
+                <div class="text-xs font-semibold text-wuxia-gold">อสูรเงา: แอนิเมชันวิ่งลาดตระเวน 4 จังหวะ</div>
+            </div>
+            <div class="glass-panel p-2 rounded-xl border border-slate-800 hover:border-wuxia-gold/40 transition">
+                <img src="images/iteration1_05_boss_telegraph_windup.png" alt="Boss Windup" class="rounded-lg w-full mb-2">
+                <div class="text-xs font-semibold text-wuxia-gold">บอสเตากลืนชีวา: ท่าง้างเตือนก่อนปล่อยคลื่นไฟ</div>
+            </div>
+            <div class="glass-panel p-2 rounded-xl border border-slate-800 hover:border-wuxia-gold/40 transition">
+                <img src="images/iteration1_06_chapter2_organic_cavern.png" alt="Chapter 2 Organic Cavern" class="rounded-lg w-full mb-2">
+                <div class="text-xs font-semibold text-wuxia-gold">บทที่ 2: ถ้ำหินธรรมชาติแตกลายงาและบ่อไอพิษ</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creator Menu for Jake -->
+    <section id="creator-menu" class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="glass-panel rounded-3xl p-8 sm:p-12 border-2 border-wuxia-gold/40 shadow-[0_0_40px_rgba(212,175,55,0.2)]">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-xs font-bold px-3 py-1 rounded-full bg-wuxia-gold/10 border border-wuxia-gold/30 text-wuxia-gold mb-3 inline-block">
+                    ★ EXECUTIVE PRODUCER SUITE ★
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-bold font-serifThai text-gold-gradient mb-3">
+                    เมนูสำหรับพี่แจ็ค: เลือกหัวข้อที่อยากทำเองได้ทันที
+                </h2>
+                <p class="text-slate-300 text-sm">
+                    พี่แจ็คสามารถเลือกหัวข้อที่สนใจด้านล่าง แล้วแจ้งน้องฟ้าและสภา AI Agent เพื่อรับมอบเครื่องมือและแนวทางดำเนินการได้ทันทีครับ!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Option 1 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-wuxia-gold transition">
+                    <div class="text-2xl mb-2">✍️</div>
+                    <h3 class="text-base font-bold text-wuxia-gold mb-1 font-serifThai">1. แต่งบทสนทนา & เนื้อเรื่องย่อย</h3>
+                    <p class="text-xs text-slate-300 mb-3">แต่งบทสนทนาเฉินซีกับไป๋เยว่หลิงขณะตั้งแคมป์ไฟ หรือแต่งความลับของเตากลืนชีวาเพิ่มเติม</p>
+                    <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-300 border border-emerald-700/40">ง่าย • สบายๆ สนุกสนาน</span>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-wuxia-gold transition">
+                    <div class="text-2xl mb-2">🧘</div>
+                    <h3 class="text-base font-bold text-wuxia-gold mb-1 font-serifThai">2. คิดสกิลใหม่ในผังบำเพ็ญตบะ</h3>
+                    <p class="text-xs text-slate-300 mb-3">กำหนดบัฟและคุณสมบัติใหม่ใน 3 สาย (กายา, เพลงกระบี่, สติ) พร้อมตั้งชื่อวิชาสไตล์ยุทธภพ</p>
+                    <span class="text-[11px] px-2 py-0.5 rounded bg-emerald-900/40 text-emerald-300 border border-emerald-700/40">ง่าย • วางแผนเพลิน</span>
+                </div>
+
+                <!-- Option 3 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-wuxia-gold transition">
+                    <div class="text-2xl mb-2">⚖️</div>
+                    <h3 class="text-base font-bold text-wuxia-gold mb-1 font-serifThai">3. ปรับสมดุลดาเมจ & เลือดบอส</h3>
+                    <p class="text-xs text-slate-300 mb-3">ปรับตัวเลขความแรงของการฟัน, เวลาคูลดาวน์สกิล, เลือดบอสเตากลืนชีวา ให้ตึงมือตามใจชอบ</p>
+                    <span class="text-[11px] px-2 py-0.5 rounded bg-blue-900/40 text-blue-300 border border-blue-700/40">ปานกลาง • ตัวเลขสถิติ</span>
+                </div>
+
+                <!-- Option 4 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-wuxia-gold transition">
+                    <div class="text-2xl mb-2">🗺️</div>
+                    <h3 class="text-base font-bold text-wuxia-gold mb-1 font-serifThai">4. วางกับดัก & มอนสเตอร์บทที่ 2</h3>
+                    <p class="text-xs text-slate-300 mb-3">กำหนดตำแหน่งท่อพ่นควันพิษ, บ่อน้ำกรด, และจุดที่อสูรเงาจะกระโดดออกมาดักซุ่มผู้เล่น</p>
+                    <span class="text-[11px] px-2 py-0.5 rounded bg-blue-900/40 text-blue-300 border border-blue-700/40">ปานกลาง • Level Design</span>
+                </div>
+
+                <!-- Option 5 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-wuxia-gold transition">
+                    <div class="text-2xl mb-2">🎵</div>
+                    <h3 class="text-base font-bold text-wuxia-gold mb-1 font-serifThai">5. คัดเลือกเสียง SFX & ดนตรีฉากใหม่</h3>
+                    <p class="text-xs text-slate-300 mb-3">เลือกเสียงกระบี่หยก, เสียงพากย์อุทานของไป๋เยว่หลิง, หรือดนตรีสำหรับบทที่ 3 (รอยแยกแดนมาร)</p>
+                    <span class="text-[11px] px-2 py-0.5 rounded bg-purple-900/40 text-purple-300 border border-purple-700/40">สุนทรียศาสตร์ • อารมณ์</span>
+                </div>
+
+                <!-- Option 6 -->
+                <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 hover:border-wuxia-gold transition">
+                    <div class="text-2xl mb-2">👑</div>
+                    <h3 class="text-base font-bold text-wuxia-gold mb-1 font-serifThai">6. สั่งทีม AI Agent ลุยรอบที่ 2 ต่อ</h3>
+                    <p class="text-xs text-slate-300 mb-3">ปล่อยให้สภา AI Agent 13 ตำแหน่ง + ซีเนียร์ ปั่นงานรอบที่ 2 (Iteration 2) ให้สมบูรณ์แบบต่อทันที</p>
+                    <span class="text-[11px] px-2 py-0.5 rounded bg-amber-900/40 text-amber-300 border border-amber-700/40">Executive Decision • สบายที่สุด</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-auto border-t border-slate-800 glass-panel py-8 px-4 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto space-y-2">
+            <p>《มหาแดนพันภพ: ผนึกกระบี่สะบั้นสวรรค์》 (Maha Dan Panpaph) — ลิขสิทธิ์และสัจพจน์กำกับโดย World Bible v1.2</p>
+            <p>สร้างสรรค์โดย พี่แจ็ค (Jake) | อำนวยการสร้างบน Apple Silicon M1 (macOS) ด้วย Godot Engine 4.7</p>
+            <div class="flex items-center justify-center space-x-4 pt-2">
+                <a href="Maha_Dan_Panpaph_Master_Dossier.docx" class="text-slate-400 hover:text-wuxia-gold">ดาวน์โหลด Word (.docx)</a>
+                <span>•</span>
+                <a href="Maha_Dan_Panpaph_Master_Dossier.pdf" class="text-slate-400 hover:text-wuxia-gold">ดาวน์โหลด PDF (.pdf)</a>
+                <span>•</span>
+                <a href="https://github.com/carinojake" target="_blank" class="text-slate-400 hover:text-wuxia-gold">GitHub: @carinojake</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
