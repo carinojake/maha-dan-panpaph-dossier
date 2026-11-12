@@ -18,6 +18,8 @@ Welcome to the official repository and master architectural dossier for **《ม
 ## 🌐 Live Interactive Web Showcase & Downloads
 
 * 🌍 **Web Showcase (GitHub Pages):** [https://carinojake.github.io/maha-dan-panpaph-dossier/](https://carinojake.github.io/maha-dan-panpaph-dossier/)
+* ✨ **Interactive 60 FPS Character Model Showcase (v6 · All 5 Characters):** [character_master_showcase.html](https://carinojake.github.io/maha-dan-panpaph-dossier/character_master_showcase.html)
+  * 🗡️ [Chen Xi (เฉินซี)](https://carinojake.github.io/maha-dan-panpaph-dossier/chen_xi_model_preview.html) | ❄️ [Bai Yueling (ไป๋เยว่หลิง)](https://carinojake.github.io/maha-dan-panpaph-dossier/bai_yueling_model_preview.html) | 🧿 [Song Ren (ซ่งเหริน)](https://carinojake.github.io/maha-dan-panpaph-dossier/song_ren_model_preview.html) | 👹 [Prince Ye Sangye (เยี่ยซางเยี่ย)](https://carinojake.github.io/maha-dan-panpaph-dossier/ye_sangye_model_preview.html) | 🧪 [Elder Zhao Yan (จ้าวเหยียน)](https://carinojake.github.io/maha-dan-panpaph-dossier/zhao_yan_model_preview.html)
 * 📄 **Download Master Dossier (Word / .docx):** [Maha_Dan_Panpaph_Master_Dossier.docx](Maha_Dan_Panpaph_Master_Dossier.docx) *(6.3 MB)*
 * 📑 **Download Master Dossier (PDF / .pdf):** [Maha_Dan_Panpaph_Master_Dossier.pdf](Maha_Dan_Panpaph_Master_Dossier.pdf) *(2.6 MB)*
 
